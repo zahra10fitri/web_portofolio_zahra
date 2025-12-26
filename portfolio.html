@@ -146,7 +146,7 @@
         /* --- PORTFOLIO GRID --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(2, 1fr); /* Changed to 2 columns */
             gap: 2rem;
             width: 100%;
             max-width: 1200px;
@@ -282,6 +282,14 @@
 
             .portfolio-grid {
                 grid-template-columns: 1fr; /* Single column on mobile */
+                gap: 1.5rem;
+            }
+        }
+        
+        /* For tablets */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
             }
         }
