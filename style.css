@@ -66,7 +66,7 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-    background: linear-gradient(135deg, #10afa7, #2ae6ec);
+    background: linear-gradient(135deg, rgb(26, 27, 27), #272727);
     border-radius: 24px;
     padding: 60px;
     display: flex;
@@ -123,7 +123,7 @@ body {
     padding: 8px;
     position: relative;
     z-index: 2;
-    border: 6px solid #070706;
+    border: 6px solid #0af7e3;
 }
 
 .profile-card {
@@ -143,6 +143,7 @@ body {
     border: 5px solid #00ffd5;
     background: #fff;
 }
+
 .profile-middle {
     background: #00ffd5;
     color: #000;

@@ -2,12 +2,268 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak | Zahra</title>
-
-    <!-- FONT AWESOME -->
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- CSS Styles -->
+    <style>
+        /* --- VARIABEL & GLOBAL STYLES (SAMA SEPERTI HALAMAN LAIN) --- */
+        :root {
+            --bg-color: #0f0e17;
+            --sidebar-bg: #1a1a2e;
+            --card-bg: #fffffe;
+            --primary-color: #a7a9be;
+            --accent-color: #ff6b6b;
+            --text-light: #fffffe;
+            --text-dark: #0f0e17;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR (SAMA SEPERTI HALAMAN LAIN) --- */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .menu {
+            width: 100%;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+
+        .menu a.active {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        .menu i {
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            flex: 1;
+            padding: 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-header h1 {
+            color: var(--text-light);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-header p {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        /* --- CONTACT GRID --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* --- CONTACT CARD --- */
+        .contact-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .contact-card:nth-child(1) { animation-delay: 0.1s; }
+        .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.3s; }
+        .contact-card:nth-child(4) { animation-delay: 0.4s; }
+        .contact-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            background-color: rgba(255, 107, 107, 0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .contact-card:hover i {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            word-break: break-all; /* Prevents long text from overflowing */
+        }
+
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1.5rem;
+            }
+
+            .logo {
+                margin-bottom: 1.5rem;
+                font-size: 1.5rem;
+            }
+
+            .menu {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
+            .menu a {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .menu a span {
+                display: none; /* Hide text on mobile */
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+                gap: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -17,61 +273,64 @@
     <aside class="sidebar">
         <div class="logo">Zahra</div>
         <nav class="menu">
-            <a href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
-            <a href="resume.html"><i class="fa-solid fa-file"></i> Resume</a>
-            <a href="portfolio.html"><i class="fa-solid fa-briefcase"></i> Portofolio</a>
-            <a href="kontak.html" class="active">
-                <i class="fa-solid fa-envelope"></i> Kontak
-            </a>
+            <a href="index.html"><i class="fa-solid fa-house"></i> <span>Beranda</span></a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> <span>Profile</span></a>
+            <a href="resume.html"><i class="fa-solid fa-file"></i> <span>Resume</span></a>
+            <a href="portfolio.html"><i class="fa-solid fa-briefcase"></i> <span>Portofolio</span></a>
+            <a href="kontak.html" class="active"><i class="fa-solid fa-envelope"></i> <span>Kontak</span></a>
         </nav>
     </aside>
 
     <!-- MAIN CONTENT -->
-<main class="main-content">
-    <h1>Kontak</h1>
-    <p class="subtitle">Hubungi saya melalui media berikut</p>
+    <main class="main-content">
+        <div class="contact-header">
+            <h1>Kontak</h1>
+            <p>Hubungi saya melalui media berikut</p>
+        </div>
 
-    <div class="contact-grid">
+        <div class="contact-grid">
 
-        <!-- INSTAGRAM -->
-        <a href="https://instagram.com/zhraftri_10" target="_blank" class="contact-card">
-            <i class="fa-brands fa-instagram"></i>
-            <h3>Instagram</h3>
-            <p>@zhraftri_10</p>
-        </a>
+            <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/zhraftri_10/" target="_blank" rel="noopener noreferrer" class="contact-card">
+                <i class="fa-brands fa-instagram"></i>
+                <h3>Instagram</h3>
+                <p>@zhraftri_10</p>
+            </a>
 
-        <!-- EMAIL -->
-       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=zahra10fitri@email.com" class="contact-card" target="_blank">
-            <i class="fa-solid fa-envelope"></i>
-            <h3>Email</h3>
-            <p>zahra10fitri@email.com</p>
-        </a>
+            <!-- EMAIL -->
+           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=zahra10fitri@email.com" class="contact-card" target="_blank">
+                <i class="fa-solid fa-envelope"></i>
+                <h3>Email</h3>
+                <p>zahra10fitri@email.com</p>
+            </a>
 
+            <!-- LINKEDIN -->
+            <a href="https://www.linkedin.com/in/zahra-fitri-40594339b/" target="_blank" class="contact-card">
+                <i class="fa-brands fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <p>linkedin.com/in/zahrafitri</p>
+            </a>
 
-        <!-- LINKEDIN -->
-        <a href="https://www.linkedin.com/in/zahra-fitri-40594339b/" target="_blank" class="contact-card">
-            <i class="fa-brands fa-linkedin"></i>
-            <h3>LinkedIn</h3>
-            <p>linkedin.com/in/zahrafitri</p>
-        </a>
+            <!-- WHATSAPP -->
+            <a href="https://wa.me/6285724246517" target="_blank" class="contact-card">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h3>WhatsApp</h3>
+                <p>0857-2424-6517</p>
+            </a>
 
-        <!-- WHATSAPP -->
-        <a href="https://wa.me/6285724246517" target="_blank" class="contact-card">
-            <i class="fa-solid fa-phone"></i>
-            <h3>WhatsApp</h3>
-            <p>0857-2424-6517</p>
-        </a>
+            <!-- ALAMAT (MAPS) -->
+              <!-- EMAIL -->
+          <a href="https://www.google.com/maps/search/Kp+Kalawagar+Desa+Cintraja+Kabupaten+Tasikmalaya" 
+                class="contact-card" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Alamat</h3>
+                    <p>Kp. Kalawagar, Desa Cintraja<br>Kab. Tasikmalaya</p>
+                </a>
 
-        <!-- ALAMAT (MAPS) -->
-        <a href="https://maps.google.com/?q=Tasikmalaya,Jawa+Barat" target="_blank" class="contact-card">
-            <i class="fa-solid fa-location-dot"></i>
-            <h3>Alamat</h3>
-            <p>Tasikmalaya, Jawa Barat</p>
-        </a>
-
-    </div>
-</main>
+        </div>
+    </main>
 
 </div>
 

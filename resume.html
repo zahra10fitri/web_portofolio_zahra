@@ -2,13 +2,338 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume | Zahra</title>
-
-    <!-- FONT AWESOME -->
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- CSS Styles -->
+    <style>
+        /* --- VARIABEL & GLOBAL STYLES (SAMA SEPERTI HALAMAN LAIN) --- */
+        :root {
+            --bg-color: #0f0e17;
+            --sidebar-bg: #1a1a2e;
+            --card-bg: #fffffe;
+            --primary-color: #a7a9be;
+            --accent-color: #ff6b6b;
+            --text-light: #fffffe;
+            --text-dark: #0f0e17;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --font-family: 'Poppins', sans-serif;
+        }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR (SAMA SEPERTI HALAMAN LAIN) --- */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .menu {
+            width: 100%;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+
+        .menu a.active {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        .menu i {
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            flex: 1;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+        }
+
+        .resume-container {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Left column smaller */
+            gap: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resume-container h1 {
+            color: var(--text-dark);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            grid-column: 1 / -1; /* Span full width */
+        }
+
+        .resume-container .subtitle {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            grid-column: 1 / -1; /* Span full width */
+        }
+        
+        .resume-container h2 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        /* --- TIMELINE (Pendidikan) --- */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .timeline .item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline .item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem; /* Align with the line */
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid var(--card-bg);
+        }
+
+        .timeline .item h4 {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .timeline .item span {
+            display: block;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .timeline .item small {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* --- EXPERIENCE LIST (Pengalaman) --- */
+        .experience-list {
+            list-style: none;
+        }
+
+        .experience-list li {
+            background-color: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .experience-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- SKILLS BARS (Keahlian & Bahasa) --- */
+        .skills-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-item label {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            background-color: #e9ecef;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #feca57);
+            border-radius: 10px;
+            width: 0; /* Start from 0 for animation */
+            animation: fillBar 2s ease-out forwards;
+        }
+
+        @keyframes fillBar {
+            to {
+                width: var(--skill-level);
+            }
+        }
+        
+        /* Manually set animation delay for each bar */
+        .skill-bar span:nth-child(1) { animation-delay: 0.1s; }
+        .skill-item:nth-child(2) .skill-bar span { animation-delay: 0.2s; }
+        .skill-item:nth-child(3) .skill-bar span { animation-delay: 0.3s; }
+        .skill-item:nth-child(4) .skill-bar span { animation-delay: 0.4s; }
+        .skill-item:nth-child(5) .skill-bar span { animation-delay: 0.5s; }
+
+
+        /* --- HOBBIES --- */
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hobby-tag {
+            background-color: #e9ecef;
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hobby-tag i {
+            color: var(--accent-color);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 968px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+            .resume-container h1, .resume-container .subtitle {
+                grid-column: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1.5rem;
+            }
+            .logo { margin-bottom: 1.5rem; font-size: 1.5rem; }
+            .menu { display: flex; justify-content: space-around; flex-wrap: wrap; }
+            .menu a { padding: 0.8rem; font-size: 0.9rem; }
+            .menu a span { display: none; }
+            .main-content { padding: 1rem; }
+            .resume-container { padding: 1.5rem; }
+        }
+
+    </style>
 </head>
 <body>
 
@@ -18,84 +343,89 @@
     <aside class="sidebar">
         <div class="logo">Zahra</div>
         <nav class="menu">
-            <a href="index.html">
-                <i class="fa-solid fa-house"></i> Beranda
-            </a>
-            <a href="profile.html">
-                <i class="fa-solid fa-user"></i> Profile
-            </a>
-            <a href="resume.html" class="active">
-                <i class="fa-solid fa-file"></i> Resume
-            </a>
-            <a href="portfolio.html">
-                <i class="fa-solid fa-briefcase"></i> Portofolio
-            </a>
-            <a href="kontak.html">
-                <i class="fa-solid fa-envelope"></i> Kontak
-            </a>
+            <a href="index.html"><i class="fa-solid fa-house"></i> <span>Beranda</span></a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> <span>Profile</span></a>
+            <a href="resume.html" class="active"><i class="fa-solid fa-file"></i> <span>Resume</span></a>
+            <a href="portfolio.html"><i class="fa-solid fa-briefcase"></i> <span>Portofolio</span></a>
+            <a href="kontak.html"><i class="fa-solid fa-envelope"></i> <span>Kontak</span></a>
         </nav>
     </aside>
 
     <!-- CONTENT -->
     <main class="main-content">
-        <div class="resume-card">
-
+        <div class="resume-container">
             <h1>Resume</h1>
-            <p class="subtitle">Pengalaman & Keahlian</p>
+            <p class="subtitle">Pengalaman & Keahlian Saya</p>
 
-            <h2>Pendidikan</h2>
-            <div class="timeline">
-                <div class="item">
-                    <h4>SMK YPC Tasikmalaya</h4>
-                    <span>Rekayasa Perangkat Lunak</span>
-                    <small>2023 - Sekarang</small>
+            <!-- KOLOM KIRI -->
+            <section class="left-column">
+                <h2>Pendidikan</h2>
+                <div class="timeline">
+                    <div class="item">
+                        <h4>SMK YPC Tasikmalaya</h4>
+                        <span>Rekayasa Perangkat Lunak</span>
+                        <small>2023 - Sekarang</small>
+                    </div>
+                    <div class="item">
+                        <h4>SMP</h4>
+                        <small>2020 - 2022</small>
+                    </div>
                 </div>
-                <div class="item">
-                    <h4>SMP</h4>
-                    <small>2020 - 2022</small>
+            </section>
+
+            <!-- KOLOM KANAN -->
+            <section class="right-column">
+                <h2>Pengalaman</h2>
+                <ul class="experience-list">
+                    <li>Membuat aplikasi web sederhana menggunakan HTML, CSS, dan PHP.</li>
+                    <li>Mengelola database sederhana menggunakan MySQL.</li>
+                    <li>Menerapkan fitur CRUD (Create, Read, Update, Delete) pada aplikasi.</li>
+                    <li>Melakukan pengujian dasar untuk memastikan aplikasi berjalan dengan baik.</li>
+                    <li>Mengikuti pelatihan Virtual Reality (VR) di Telkom.</li>
+                </ul>
+
+                <h2>Keahlian</h2>
+                <div class="skills-group">
+                    <div class="skill-item">
+                        <label>UI/UX Design <span>75%</span></label>
+                        <div class="skill-bar"><span style="--skill-level: 75%"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <label>Laravel <span>70%</span></label>
+                        <div class="skill-bar"><span style="--skill-level: 70%"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <label>HTML / CSS <span>60%</span></label>
+                        <div class="skill-bar"><span style="--skill-level: 60%"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <label>Database SQL <span>50%</span></label>
+                        <div class="skill-bar"><span style="--skill-level: 50%"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <label>Flutter <span>55%</span></label>
+                        <div class="skill-bar"><span style="--skill-level: 55%"></span></div>
+                    </div>
                 </div>
-            </div>
+                
+                <h2>Bahasa</h2>
+                <div class="skills-group">
+                    <div class="skill-item">
+                        <label>Indonesia <span>80%</span></label>
+                        <div class="skill-bar"><span style="--skill-level: 80%"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <label>Inggris <span>40%</span></label>
+                        <div class="skill-bar"><span style="--skill-level: 40%"></span></div>
+                    </div>
+                </div>
 
-         <h2>Pengalaman</h2>
-<ul class="experience">
-    <li>Membuat aplikasi web sederhana menggunakan HTML, CSS, dan PHP</li>
-    <li>Mengelola database sederhana menggunakan MySQL</li>
-    <li>Menerapkan fitur CRUD (Create, Read, Update, Delete) pada aplikasi</li>
-    <li>Melakukan pengujian dasar untuk memastikan aplikasi berjalan dengan baik</li>
-    <li>Mengikuti pelatihan Virtual Reality (VR) di Telkom</li>
-</ul>
-
-
-            <h2>Bahasa</h2>
-            <div class="skill">
-                <label>Indonesia</label>
-                <div class="bar"><span style="width:80%"></span></div>
-
-                <label>Inggris</label>
-                <div class="bar"><span style="width:40%"></span></div>
-            </div>
-
-            <h2>Keahlian</h2>
-            <div class="skill">
-                <label>UI/UX Design</label>
-                <div class="bar"><span style="width:75%"></span></div>
-
-                <label>Laravel</label>
-                <div class="bar"><span style="width:70%"></span></div>
-
-                <label>HTML / CSS</label>
-                <div class="bar"><span style="width:60%"></span></div>
-
-                <label>Database SQL</label>
-                <div class="bar"><span style="width:50%"></span></div>
-
-                <label>Flutter</label>
-                <div class="bar"><span style="width:55%"></span></div>
-            </div>
-
-            <h2>Hobi</h2>
-            <p>Badminton, Ngoding</p>
-
+                <h2>Hobi</h2>
+                <div class="hobbies">
+                    <div class="hobby-tag"><i class="fa-solid fa-shuttlecock"></i> Badminton</div>
+                    <div class="hobby-tag"><i class="fa-solid fa-code"></i> Ngoding</div>
+                </div>
+            </section>
         </div>
     </main>
 

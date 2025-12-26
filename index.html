@@ -2,33 +2,304 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Zahra</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- CSS Styles -->
+    <style>
+        /* --- VARIABEL & GLOBAL STYLES --- */
+        :root {
+            --bg-color: #0f0e17;
+            --sidebar-bg: #1a1a2e;
+            --primary-color: #a7a9be;
+            --accent-color: #ff6b6b;
+            --text-light: #fffffe;
+            --text-dark: #0f0e17;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- DASHBOARD LAYOUT --- */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR (SAMA SEPERTI HALAMAN PROFIL) --- */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .menu {
+            width: 100%;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+
+        .menu a.active {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        .menu i {
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            flex: 1;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            padding: 4rem;
+            gap: 4rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text {
+            flex: 1;
+            color: var(--text-light);
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-color);
+            display: inline-block;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b;
+            }
+            to {
+                text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b;
+            }
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--sidebar-bg);
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- BUTTON --- */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1.5rem;
+            }
+
+            .logo {
+                margin-bottom: 1.5rem;
+                font-size: 1.5rem;
+            }
+
+            .menu {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
+            .menu a {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .menu a span {
+                display: none; /* Hide text on mobile */
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .hero {
+                flex-direction: column-reverse; /* Image on top, text below */
+                text-align: center;
+                padding: 2rem 1rem;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.2rem;
+            }
+
+            .hero-image img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <div class="dashboard">
 
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">Zahra</div>
         <nav class="menu">
-            <a href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
-            <a href="resume.html"><i class="fa-solid fa-file"></i> Resume</a>
-            <a href="portfolio.html"><i class="fa-solid fa-briefcase"></i> Portofolio</a>
-            <a href="kontak.html"><i class="fa-solid fa-envelope"></i> Kontak</a>
+            <a href="index.html" class="active"><i class="fa-solid fa-house"></i> <span>Beranda</span></a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> <span>Profile</span></a>
+            <a href="resume.html"><i class="fa-solid fa-file"></i> <span>Resume</span></a>
+            <a href="portfolio.html"><i class="fa-solid fa-briefcase"></i> <span>Portofolio</span></a>
+            <a href="kontak.html"><i class="fa-solid fa-envelope"></i> <span>Kontak</span></a>
         </nav>
     </aside>
 
+    <!-- CONTENT -->
     <main class="main-content">
         <section class="hero">
-            <div>
+            <div class="hero-text">
                 <h1>Hello, I’m<br><span>Zahra Fitri</span></h1>
                 <p>Rekayasa Perangkat Lunak</p>
                 <a href="kontak.html" class="btn">WORK WITH ME</a>
             </div>
-            <img src="img/z.jpeg" alt="Zahra">
+            <div class="hero-image">
+                <img src="img/profile.jpeg" alt="Zahra">
+            </div>
         </section>
     </main>
 
